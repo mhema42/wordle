@@ -21,9 +21,6 @@ document.getElementById("button").addEventListener("click", () => {
         ...element,
         letter: "unchecked"
     }));
-
-    console.log(wordle_array)
-    console.log(guess_array)
     
     //check if guessed word contains correct amount of letters
     if (guess_array.length == wordle_array.length) {
@@ -38,42 +35,26 @@ document.getElementById("button").addEventListener("click", () => {
 // compare input array to wordle array
 function compare(guess_array, wordle_array) {
     for (let i=0; i < guess_array.length; i++) {
+        
         const guess_letter = guess_array[i][0];
         const wordle_letter = wordle_array[i][0]
+        console.log(guess_letter + ", " + wordle_letter)
+
         if (guess_letter == wordle_letter) {  
             guess_array[i].letter = "correct"
         }
         else {
-            const letter_exist = wordle_array.find(guess_letter);
-            console.log(letter_exist);
-            if (guess_letter == letter_exist) {
-                guess_array[i].letter = "missplaced"
-            }
-            else {
-            guess_array[i].letter = "incorrect"
+            for (let j=0; j < guess_array.length; j++) {
+                if (guess_letter == wordle_array[j][0]) {
+                    if (guess_array[i].letter == "unchecked") {
+                        guess_array[i].letter = "missplaced"
+                    }
+                    else {                       
+                        guess_array[i].letter = "incorrect"
+                    }
+                }
             }
         }
     };
     console.log(guess_array)
 }
-
-
-       /*wordle_array.map(function() {
-            if (guess_array.value == wordle_array.value) {
-                newarray.push({"letter": guess_array.value, "label": "correct"});
-                
-            }
-            else {
-                newarray[i].push({"letter": guess_array.value, "label": "incorrect"});
-            }
-            console.log(newarray);
-        });
-        
-        if (guess_array[i] == wordle_array[i]) {
-            result.push("correct");
-        }
-        else {
-            result.push("incorrect");
-        } */
-   
-    // return newarray;

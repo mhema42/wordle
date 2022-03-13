@@ -12,13 +12,19 @@
 <script>
     const word_str = "test";
     let word_array = word_str.split("");
-    console.log(word_array);
     word_array = word_array.map((element) => ({
         ...element,
-        letter: "unchecked"
+        check: "unchecked"
     }));
-    console.log(word_array[0][0]);
-    const found = word_array.find("s");
-    console.log(found)
+
+
+    console.log(word_array)
+    
+    /* let obj = word_array.find(o => o.letter === 'unchecked');
+    console.log(obj) */
+
+    
+
+
 </script>
 </html>
