@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordle - a strange world of words</title>
+  </head>
+  <body>
+    <div class="wordle-div">
+      <label>Enter word for the game:</label>
+      <input class="wordle-word" id="wordle_word">
+    </div>
+
+    <div class="guess-div">
+      <h1>Welcome to Wordle</h1>
+      <i>- a strange world of words -</i>
+      <p>Begin by guesing what word i`m thinking of...?????</p>
+      <label>My guess is:</label>
+      <input class="guess-word" id="guess_word">
+      <button class="send-btn" id="button">Send</button>
+    </div>
+
+    <div class="result">
+      <p class="result" id="result"></p>
+    </div>
+
+    <script src="wrd_check.js"></script>
+  </body>
+</html>
