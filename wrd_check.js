@@ -13,10 +13,6 @@ document.getElementById("button").addEventListener("click", () => {
     let wordle_array = wordle_word.split("");
     let guess_array = guess_word.split("");
     // add properties to each letter
-    wordle_array = wordle_array.map((element) => ({
-        ...element,
-        letter: "unchecked"
-    }));
     guess_array = guess_array.map((element) => ({
         ...element,
         letter: "unchecked"
@@ -25,6 +21,7 @@ document.getElementById("button").addEventListener("click", () => {
     //check if guessed word contains correct amount of letters
     if (guess_array.length == wordle_array.length) {
         let result = compare(guess_array, wordle_array)
+        return document.getElementById("result").innerHTML = result;
         }
         else {
             return document.getElementById("result").innerHTML = ("Your guess must contain " + wordle_array.length + " letters");
@@ -35,13 +32,13 @@ document.getElementById("button").addEventListener("click", () => {
 // compare input array to wordle array
 function compare(guess_array, wordle_array) {
     for (let i=0; i < guess_array.length; i++) {
-        
         const guess_letter = guess_array[i][0];
-        const wordle_letter = wordle_array[i][0]
-        console.log(guess_letter + ", " + wordle_letter)
-
-        if (guess_letter == wordle_letter) {  
+        const wordle_letter = wordle_array[i]
+        // console.log(guess_letter + ", " + wordle_letter)
+        if (guess_letter == wordle_letter) { 
+            wordle_array[i] = "checked"
             guess_array[i].letter = "correct"
+
         }
         else {
             for (let j=0; j < guess_array.length; j++) {
@@ -49,12 +46,19 @@ function compare(guess_array, wordle_array) {
                     if (guess_array[i].letter == "unchecked") {
                         guess_array[i].letter = "missplaced"
                     }
-                    else {                       
-                        guess_array[i].letter = "incorrect"
-                    }
                 }
             }
         }
-    };
+    }
+    for (let k=0; k < guess_array.length; k++) {
+        if (guess_array[k][0] || wordle_array[k][0]) {
+            if (guess_array[k].letter == "unchecked") {
+                guess_array[k].letter = "incorrect"
+            }
+        }   
+    }                    
     console.log(guess_array)
+    
+    return JSON.stringify(guess_array)
 }
+    
