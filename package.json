@@ -1,0 +1,23 @@
+{
+  "name": "wordle",
+  "version": "1.0.0",
+  "description": "word game",
+  "main": "wrd_check.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhema42/wordle.git"
+  },
+  "author": "Mats Hemå",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mhema42/wordle/issues"
+  },
+  "homepage": "https://github.com/mhema42/wordle#readme",
+  "dependencies": {
+    "jest": "^27.5.1"
+  }
+}
