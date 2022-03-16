@@ -69,8 +69,8 @@ function array_check (wordle_array, guess_array) {
             };
         };
     });
-    const result = JSON.stringify(guess_array)
+    const result = JSON.stringify(guess_array).replace(/{/g,"").replace(/}/g,"").replace(/"/g,"").replace(/letter:/g," ").replace(/status:/g," ")
     return result;
 };
 
-// export default word_check;
+// export function word_check();

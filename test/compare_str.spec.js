@@ -57,7 +57,7 @@ function array_check (wordle_array, guess_array) {
           };
       };
   });
-  const result = JSON.stringify(guess_array)
+  const result = JSON.stringify(guess_array).replace(/{/g,"").replace(/}/g,"").replace(/"/g,"").replace(/letter:/g," ").replace(/status:/g," ")
   return result;
 };
 
@@ -77,3 +77,41 @@ test("two correct letters", async () => {
 });
 
 // test if letters in guessed word are correct, missplaced or incorrect
+test("two missplaced letters", async () => {
+  const wordle_word = "ab";
+  const guess_word = "ba";
+  const data = await word_check(wordle_word, guess_word);
+  expect(data).toBe('[ b, missplaced, a, missplaced]');
+});
+
+// test if letters in guessed word are correct, missplaced or incorrect
+test("two missplaced letters and one correct letter", async () => {
+  const wordle_word = "abc";
+  const guess_word = "cba";
+  const data = await word_check(wordle_word, guess_word);
+  expect(data).toBe('[ c, missplaced, b, correct, a, missplaced]');
+});
+
+// test if letters in guessed word are correct, missplaced or incorrect
+test("one correct letter, two missplaced letters and one incorrect letter", async () => {
+  const wordle_word = "abcd";
+  const guess_word = "acba";
+  const data = await word_check(wordle_word, guess_word);
+  expect(data).toBe('[ a, correct, c, missplaced, b, missplaced, a, incorrect]');
+});
+
+// test if letters in guessed word are correct, missplaced or incorrect
+test("two correct letters, two missplaced letters and one incorrect letter", async () => {
+  const wordle_word = "abcde";
+  const guess_word = "acbbe";
+  const data = await word_check(wordle_word, guess_word);
+  expect(data).toBe('[ a, correct, c, missplaced, b, missplaced, b, incorrect, e, correct]');
+});
+
+// test if words has different length
+test("wordle word and guessed word has different amount of letters", async () => {
+  const wordle_word = "abcde";
+  const guess_word = "abcdef";
+  const data = await word_check(wordle_word, guess_word);
+  expect(data).toBe('Your guess must contain 5 letters');
+});
